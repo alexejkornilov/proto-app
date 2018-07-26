@@ -1,0 +1,61 @@
+<div class="d-flex flex-column flex-md-row align-items-center mb-3 bg-white">
+  <ng-select
+  [items]="people$1 | async"
+  [multiple]="true"
+  [closeOnSelect]="false"
+  [hideSelected]="true"
+  bindLabel="department"
+  bindValue="department"
+  placeholder="Выберете отдел"
+  (change)="filterClickUsers('department')"
+  [(ngModel)]="selectedPeople4">
+</ng-select>
+<ng-select
+  [items]="people$2 | async"
+  [multiple]="true"
+  [closeOnSelect]="false"
+  [hideSelected]="true"
+  bindLabel="position"
+  bindValue="position"
+  placeholder="Выберете должность"
+  (change)="filterClickUsers('position')"
+  [(ngModel)]="selectedPeople5">
+</ng-select>
+</div> 
+
+<div class="row">
+  <div class="col-3">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1" (click)="mePeop()">
+          <i class="material-icons">
+            account_circle
+          </i>
+        </span>
+      </div>
+      <input type="text" class="form-control" placeholder="имя сотрудника" aria-label="имя сотрудника" aria-describedby="basic-addon1" (keyup)="onKey($event)" ng-model="searchPeop" [value]="inpValue">
+      <div class="input-group-append">
+          <span class="input-group-text" (click)="searchPeop()"><i class="material-icons">
+              close
+              </i></span>
+        </div>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of people$3 | async">
+          {{item.name}}
+        </li>
+      </ul>
+  </div>
+  <div class="col-9">
+    <div class="card-deck mb-3 text-center">
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;" *ngFor="let item of people$3 | async">
+            <div class="card-header">{{item.name}}</div>
+            <div class="card-body">
+              <h5 class="card-title">Primary card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+        
+    </div>
+  </div>
+</div>
